@@ -1,0 +1,16 @@
+[build]
+  publish = "dist"
+  command = "npm run build"
+
+[build.environment]
+  NODE_VERSION = "18"
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+[context.production.environment]
+  VITE_SUPABASE_PROJECT_ID = "rhkdowxdqxrqossjbwfh"
+  VITE_SUPABASE_PUBLISHABLE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJoa2Rvd3hkcXhycW9zc2pid2ZoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjA4MDc2NjYsImV4cCI6MjA3NjM4MzY2Nn0.Si4RSh0hdHAm2m4zeL45U77SH9gRbBAdqJdjsqLV31Q"
+  VITE_SUPABASE_URL = "https://rhkdowxdqxrqossjbwfh.supabase.co"

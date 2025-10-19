@@ -1,0 +1,139 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    --background: 230 35% 7%;
+    --foreground: 210 40% 98%;
+
+    --card: 230 30% 10%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 230 30% 10%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 263 70% 60%;
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 230 25% 18%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 230 25% 20%;
+    --muted-foreground: 215 20% 65%;
+
+    --accent: 189 95% 55%;
+    --accent-foreground: 230 35% 7%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 230 25% 18%;
+    --input: 230 25% 18%;
+    --ring: 263 70% 60%;
+
+    --radius: 1rem;
+    
+    /* Custom Portfolio Colors */
+    --gradient-primary: linear-gradient(135deg, hsl(263, 70%, 60%), hsl(189, 95%, 55%));
+    --gradient-accent: linear-gradient(90deg, hsl(189, 95%, 55%), hsl(263, 70%, 60%));
+    --glow-primary: 263 70% 60%;
+    --glow-accent: 189 95% 55%;
+    
+    /* Animation */
+    --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .light {
+    --background: 0 0% 100%;
+    --foreground: 230 35% 7%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 230 35% 7%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 230 35% 7%;
+
+    --primary: 263 70% 50%;
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 230 25% 95%;
+    --secondary-foreground: 230 35% 7%;
+
+    --muted: 230 25% 96%;
+    --muted-foreground: 215 20% 45%;
+
+    --accent: 189 95% 45%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 230 25% 90%;
+    --input: 230 25% 90%;
+    --ring: 263 70% 50%;
+    
+    /* Custom Portfolio Colors for Light Mode */
+    --gradient-primary: linear-gradient(135deg, hsl(263, 70%, 50%), hsl(189, 95%, 45%));
+    --gradient-accent: linear-gradient(90deg, hsl(189, 95%, 45%), hsl(263, 70%, 50%));
+    --glow-primary: 263 70% 50%;
+    --glow-accent: 189 95% 45%;
+  }
+
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground transition-colors duration-300;
+    min-height: 100vh;
+  }
+  
+  body:not(.light) {
+    background: linear-gradient(to bottom, hsl(230, 35%, 7%), hsl(230, 30%, 10%));
+  }
+  
+  body.light {
+    background: linear-gradient(to bottom, hsl(0, 0%, 100%), hsl(230, 25%, 98%));
+  }
+  
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@layer utilities {
+  .text-gradient {
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  .glow {
+    box-shadow: 0 0 40px hsl(var(--glow-primary) / 0.3),
+                0 0 80px hsl(var(--glow-accent) / 0.2);
+  }
+  
+  .glass {
+    background: hsl(var(--card) / 0.5);
+    backdrop-filter: blur(12px);
+    border: 1px solid hsl(var(--border) / 0.5);
+  }
+}
