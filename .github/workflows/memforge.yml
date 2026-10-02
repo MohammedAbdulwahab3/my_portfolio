@@ -1,0 +1,30 @@
+name: memforge
+
+on:
+  push:
+    paths: [ "memforge/**", ".github/workflows/memforge.yml" ]
+  pull_request:
+    paths: [ "memforge/**", ".github/workflows/memforge.yml" ]
+
+jobs:
+  build-test:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - name: openmp+mpi
+            cmake: ""
+          - name: std-thread
+            cmake: "-DMEMFORGE_OPENMP=OFF -DMEMFORGE_MPI=OFF"
+    name: ${{ matrix.name }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install toolchain
+        run: sudo apt-get update && sudo apt-get install -y cmake g++ libopenmpi-dev openmpi-bin
+      - name: Configure
+        run: cmake -S memforge -B memforge/build -DCMAKE_BUILD_TYPE=Release ${{ matrix.cmake }}
+      - name: Build
+        run: cmake --build memforge/build -j
+      - name: Test
+        run: ctest --test-dir memforge/build --output-on-failure
